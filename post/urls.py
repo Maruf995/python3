@@ -1,9 +1,12 @@
 from django.urls import path
-from .views import hello_world_view, date_view, blog_view
+from . import views
+    #hello_world_view, date_view, blog_view, post_detail, CreateBlogView
 
 
 urlpatterns = [
-    path("hello", hello_world_view),
-    path("date/", date_view),
-    path("", blog_view),
+    path("hello", views.hello_world_view),
+    path("date/", views.date_view),
+    path("", views.blog_view),
+    path("<int:pk>/", views.post_detail),
+    path("create/", views.CreateBlogView.as_view())
 ]
