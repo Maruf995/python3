@@ -7,11 +7,26 @@
 <body style="text-align: center">
 <h1>{{ post.title }}</h1>
 <p>
-    {{ post.descriptoin }}
+    {{ post.description }}
 </p>
 <p>
-    Likes: {{ post.likes }}, Reposts {{ post.reposts }}
+    Likes: {{ post.likes }}, Reposts: {{ post.reposts }}
 </p>
+<form action="/blog/{{ post.id }}/comment/" method="post">
+    {% csrf_token%}
+    <label>
+        Comment:
+        <input name="text" type="text">
+    </label>
 
+    <input value="Оставь Свой ненужный коммент!" type="button">
+</form>
+{% for i in comments %}
+<li>
+    <h3>{{ i.text}}</h3>
+
+</li>
+
+{% endfor %}
 </body>
 </html>
